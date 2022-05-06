@@ -1,0 +1,38 @@
+<%= form_with(model: taxon) do |form| %>
+  <% if taxon.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(taxon.errors.count, "error") %> prohibited this species from being saved:</h2>
+
+      <ul>
+        <% taxon.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, rows: 12, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :link, class: "form-label" %>
+    <%= form.text_field :link, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :cover_photo, class: "form-label" %>
+    <%= form.text_field :cover_photo, class: "form-control" %>
+  </div>
+
+  <div class="btn-group">
+    <%= form.submit "Update species", class: "btn btn-primary" %>
+    <%= link_to "Back", :back, class: "btn btn-secondary" %>
+  </div>
+<% end %>

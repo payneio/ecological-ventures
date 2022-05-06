@@ -1,0 +1,79 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ventures</h1>
+
+<div class="input-group rounded">
+  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+  <span class="input-group-text border-0" id="search-addon">
+    <i class="bi bi-search"></i>
+  </span>
+</div>
+
+<div class="dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" id="ventureSelectDropdownButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    View <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="ventureSelectDropdownButton">
+    <% @ventures.each do |venture| %>
+      <li><%= link_to venture.name, venture, class: "dropdown-item" %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="container px-4 py-5">
+  <div class="row">
+    <div class="col">
+
+      <div class="card">
+        <h5 class="card-header">
+          Featured venture
+        </h5>
+        <img src="<%= @featured_venture.cover_photo %>" class="card-img-top" alt="<%= @featured_venture.name %>">
+        <div class="card-body">
+          <div class="card-body">
+            <h5 class="card-title"><%= @featured_venture.name %></h5>
+            <p class="card-text"><%= @featured_venture.summary %></p>
+            <div class="text-center">
+              <%= link_to "See featured venture", @featured_venture, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col">
+      
+      <h5>
+        Recommended for you
+      </h5>
+
+      <div>
+        <% @recommended_ventures.each do |venture| %>
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="<%= venture.cover_photo %>" class="img-fluid rounded-start cover" alt="<%= venture.name %>">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= venture.name %></h5>
+                  <p class="card-text"><%= venture.summary %></p>
+                  <%= link_to "See venture", venture, class: "card-link" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+Fresh Favorites
+
+How to create a great Ecological Venture page
+
+<div>
+  <%= link_to "New venture", new_venture_path, { class: "btn btn-primary" } %>
+</div>

@@ -1,0 +1,28 @@
+<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <h1 class="display-6">Ecological Ventures</h1>
+    </a>
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li>
+            <%= link_to "Ventures", ventures_path(), {class: "nav-link px=2 text-secondary" } %>
+        </li>
+        <li>
+            <%= link_to "People", people_path(), {class: "nav-link px=2 text-secondary" } %>
+        </li>
+        <li>
+            <%= link_to "Ecosystems", ecosystems_path(), {class: "nav-link px=2 text-secondary" } %>
+        </li>
+        <li>
+            <%= link_to "Species", taxa_path(), {class: "nav-link px=2 text-secondary" } %>
+        </li>
+        <li>
+            <%= link_to "Problems", problems_path(), {class: "nav-link px=2 text-secondary" } %>
+        </li>
+        <li>
+            <%= link_to "Solutions", solutions_path(), {class: "nav-link px=2 text-secondary" } %>
+        </li>
+        <li>
+            <%= link_to "About", venture_path(1), {class: "nav-link px=2 text-secondary" } %>
+        </li>
+    </ul>
+</div>

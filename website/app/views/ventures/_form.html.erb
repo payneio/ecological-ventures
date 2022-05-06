@@ -1,0 +1,85 @@
+<%= form_with(model: venture) do |form| %>
+  <% if venture.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(venture.errors.count, "error") %> prohibited this venture from being saved:</h2>
+
+      <ul>
+        <% venture.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label "Name (required)", class: "form-label" %>
+    <%= form.text_field :name, required: true, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label "Summary (required)", class: "form-label" %>
+    <%= form.text_field :summary, required: true, class: "form-control" %>
+  </div>
+  <%= link_to "markdown supported", "https://www.markdownguide.org/basic-syntax/", target: "_blank" %>
+  <div class="mb-3">
+    <%= form.label class: "form-label" do
+      raw("Description (required) #{render partial: 'shared/markdown_icon_link'}")
+    end %>
+    <%= form.text_area :description, rows: 10, required: true, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :logo, class: "form-label" %>
+    <%= form.text_field :logo, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :cover_photo, class: "form-label" %>
+    <%= form.text_field :cover_photo, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :org_size, class: "form-label" %>
+    <%= form.number_field :org_size, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :year_started, class: "form-label" %>
+    <%= form.number_field :year_started, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, ["Unclaimed", "Active", "Defunct", "Unknown"], {},  { class: "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :labels, class: "form-label" %>
+    <%= form.text_field :labels, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :link, class: "form-label" %>
+    <%= form.text_field :link, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :discord, class: "form-label" %>
+    <%= form.text_field :discord, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :youtube, class: "form-label" %>
+    <%= form.text_field :youtube, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :people, class: "form-label" %>
+    <%= collection_select :person, :people_ids, Person.all, :id, :name, {}, { :multiple => true, class: "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

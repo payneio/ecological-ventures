@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @ecosystem %>
+
+<div>
+  <%= link_to "Edit this ecosystem", edit_ecosystem_path(@ecosystem) %> |
+  <%= link_to "Back to ecosystems", ecosystems_path %>
+
+  <%= button_to "Destroy this ecosystem", @ecosystem, method: :delete %>
+</div>

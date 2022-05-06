@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @person %>
+
+<div>
+  <strong>Associated ventures:</strong>
+  <div>
+    <% for venture in  @person.ventures do %>
+      <%= link_to venture.name, venture_path(venture) %>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <%= link_to "Edit this person", edit_person_path(@person) %>
+  <%= button_to "Destroy this person", @person, method: :delete %>
+</div>
+

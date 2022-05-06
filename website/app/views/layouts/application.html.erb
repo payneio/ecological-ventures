@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title><%= content_for?(:title) ? yield(:title) : "Ventures" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Environmental Ventures" %>">
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <header class="p-4 bg-dark text-white">
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main" class="flex-shrink-0">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container">
+        &copy; 2022 Environmental Ventures
+      </div>
+    </footer>
+  </body>
+</html>

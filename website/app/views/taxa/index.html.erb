@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Species</h1>
+
+<div id="taxa">
+  <% @taxa.each do |taxon| %>
+    <p>
+      <%= link_to taxon.name, taxon %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New species", new_taxon_path, class: "btn btn-primary" %>

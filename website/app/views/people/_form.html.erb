@@ -1,0 +1,87 @@
+<%= form_with(model: person) do |form| %>
+  <% if person.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+        <% person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :phone, style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :linkedin, style: "display: block" %>
+    <%= form.text_field :linkedin %>
+  </div>
+
+  <div>
+    <%= form.label :facebook, style: "display: block" %>
+    <%= form.text_field :facebook %>
+  </div>
+
+  <div>
+    <%= form.label :website, style: "display: block" %>
+    <%= form.text_field :website %>
+  </div>
+
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div>
+    <%= form.label :country, style: "display: block" %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div>
+    <%= form.label :portrait, style: "display: block" %>
+    <%= form.text_field :portrait %>
+  </div>
+
+  <div>
+    <%= form.label :avatar, style: "display: block" %>
+    <%= form.text_field :avatar %>
+  </div>
+
+  <div>
+    <%= form.label :bio, style: "display: block" %>
+    <%= form.text_area :bio %>
+  </div>
+
+  <div>
+    <%= form.label :interests, style: "display: block" %>
+    <%= form.text_area :interests %>
+  </div>
+
+  <div>
+    <%= form.label :is_public, style: "display: block" %>
+    <%= form.check_box :is_public %>
+  </div>
+
+  <div>
+    <%= form.label :ventures %>
+    <%= collection_select :venture, :venture_ids, Venture.all, :id, :name, {}, { :multiple => true } %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @taxon %>
+
+<div class="btn-group">
+  <%= link_to "Edit", edit_taxon_path(@taxon), class: "btn btn-primary" %>
+  <%= button_to "Destroy this species", @taxon, method: :delete, class: "btn btn-danger" %>
+</div>

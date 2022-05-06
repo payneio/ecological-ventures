@@ -1,0 +1,26 @@
+<div id="<%= dom_id taxon %>">
+
+  <% if taxon.cover_photo %>
+    <p>
+      <img src="<%= taxon.cover_photo %>" alt="<%= taxon.name %>" class="img-fluid"/>
+    </p>
+  <% end %>
+
+  <p>
+    <strong>Name:</strong>
+    <%= taxon.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= taxon.description %>
+  </p>
+
+  <% if not taxon.link.empty? %>
+    <p>
+      <strong>Link:</strong>
+        <%= link_to "Wikipedia", taxon.link, target: "_blank" %>
+    </p>
+  <% end %>
+
+</div>

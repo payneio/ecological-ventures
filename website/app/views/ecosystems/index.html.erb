@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ecosystems</h1>
+
+<div>
+     <iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=47.73655265353599~-122.34237670898438&lvl=11&typ=d&sty=a&src=SHELL&FORM=MBEDV8" scrolling="no">
+     </iframe>
+     <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
+        <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=47.73655265353599~-122.34237670898438&amp;sty=a&amp;lvl=11&amp;FORM=MBEDLD">View Larger Map</a>
+    </div>
+</div>
+
+<div id="ecosystems">
+  <% @ecosystems.each do |ecosystem| %>
+    <p>
+      <%= link_to ecosystem.name, ecosystem %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ecosystem", new_ecosystem_path, class: "btn btn-primary" %>

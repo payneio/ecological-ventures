@@ -1,0 +1,76 @@
+<div id="<%= dom_id venture %>">
+
+  <% if not venture.cover_photo.blank? %>
+    <p>
+      <img src="<%= venture.cover_photo %>" alt="<%= venture.name %>" class="img-fluid"/>
+    </p>
+  <% end %>
+
+  <h1 class="display-1">
+    <%= venture.name %>
+  </h1>
+
+  <p class="lead">
+    <%= venture.summary %>
+  </p>
+
+  <div>
+    <%= markdown(venture.description) %>
+  </div>
+
+  <% if not venture.logo.blank? %>
+    <p>
+      <img src="<%= venture.logo %>" alt="<%= venture.name %> logo"/>
+    </p>
+  <% end %>
+
+  <% if not venture.org_size.blank? %>
+    <p>
+      <strong>Org size:</strong>
+      <%= venture.org_size %>
+    </p>
+  <% end %>
+
+  <% if not venture.year_started.blank? %>
+    <p>
+      <strong>Year started:</strong>
+      <%= venture.year_started %>
+    </p>
+  <% end %>
+
+  <% if not venture.youtube.blank? %>
+    <div class="container text-center my-5 ratio ratio-16x9">
+      <iframe 
+        class="item-block video"
+        type="text/html"
+        data-src="<%= venture.youtube %>?showinfo=0&amp;wmode=transparent&amp;rel=0&amp;autoplay=1&amp;mute=1&amp;controls=1" allow="autoplay" allowfullscreen="" data-at="video-youtube" title="KUYABEH" frameborder="0" 
+        src="<%= venture.youtube %>?showinfo=0&amp;wmode=transparent&amp;rel=0&amp;autoplay=1&amp;mute=1&amp;controls=1"
+      ></iframe>
+    </div>
+  <% end %>
+
+  <% if not venture.link.blank? %>
+    <%= link_to venture.link, target: "_blank", alt: "Official website", class: "btn btn-primary" do %>
+      <i class="bi bi-link"></i>
+    <% end %>
+  <% end %>
+
+  <% if not venture.discord.blank? %>
+    <%= link_to venture.discord, target: "_blank", alt: "Join the discussion on Discord", class: "btn btn-primary" do %>
+      <i class="bi bi-discord"></i>
+    <% end %>
+  <% end %>
+
+  <p>
+    <strong>Status:</strong>
+    <%= venture.status %>
+  </p>
+
+  <div>
+    <strong>Labels:</strong>
+    <% @labels.each do |label| %>
+      <span class="badge rounded-pill bg-success"><%= label %></span>
+    <% end %>
+  </p>
+
+</div>
