@@ -17,6 +17,8 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main" class="flex-shrink-0">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
     <footer class="footer mt-auto py-3 bg-light">
