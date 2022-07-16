@@ -3,24 +3,29 @@ class SolutionsController < ApplicationController
 
   # GET /solutions or /solutions.json
   def index
+    authorize Solution
     @solutions = Solution.all
   end
 
   # GET /solutions/1 or /solutions/1.json
   def show
+    authorize @solution
   end
 
   # GET /solutions/new
   def new
+    authorize Solution
     @solution = Solution.new
   end
 
   # GET /solutions/1/edit
   def edit
+    authorize @solution
   end
 
   # POST /solutions or /solutions.json
   def create
+    authorize Solution
     @solution = Solution.new(solution_params)
 
     respond_to do |format|
@@ -36,6 +41,7 @@ class SolutionsController < ApplicationController
 
   # PATCH/PUT /solutions/1 or /solutions/1.json
   def update
+    authorize @solution
     respond_to do |format|
       if @solution.update(solution_params)
         format.html { redirect_to solution_url(@solution), notice: "Solution was successfully updated." }
@@ -49,6 +55,7 @@ class SolutionsController < ApplicationController
 
   # DELETE /solutions/1 or /solutions/1.json
   def destroy
+    authorize @solution
     @solution.destroy
 
     respond_to do |format|

@@ -3,24 +3,29 @@ class PeopleController < ApplicationController
 
   # GET /people or /people.json
   def index
+    authorize Person
     @people = Person.all
   end
 
   # GET /people/1 or /people/1.json
   def show
+    authorize @person
   end
 
   # GET /people/new
   def new
+    authorize Person
     @person = Person.new
   end
 
   # GET /people/1/edit
   def edit
+    authorize @person
   end
 
   # POST /people or /people.json
   def create
+    authorize Person
     @person = Person.new(person_params)
     associate_ventures(params[:venture][venture_ids])
 
@@ -37,6 +42,7 @@ class PeopleController < ApplicationController
 
   # PATCH/PUT /people/1 or /people/1.json
   def update
+    authorize @person
     associate_ventures(params[:venture][venture_ids])
 
     respond_to do |format|
@@ -52,6 +58,7 @@ class PeopleController < ApplicationController
 
   # DELETE /people/1 or /people/1.json
   def destroy
+    authorize @person
     @person.destroy
 
     respond_to do |format|

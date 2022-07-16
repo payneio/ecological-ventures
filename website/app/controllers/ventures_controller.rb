@@ -3,6 +3,7 @@ class VenturesController < ApplicationController
 
   # GET /ventures or /ventures.json
   def index
+    authorize Venture
     @ventures = Venture.all.sort_by(&:name)
     @featured_venture = Venture.find(1)
     @recommended_ventures = @ventures.excluding(@featured_venture).sample(3)
@@ -11,20 +12,24 @@ class VenturesController < ApplicationController
 
   # GET /ventures/1 or /ventures/1.json
   def show
+    authorize @venture
     @labels = @venture.labels.split(';').map{ |x| x.strip }
   end
 
   # GET /ventures/new
   def new
+    authorize Venture
     @venture = Venture.new
   end
 
   # GET /ventures/1/edit
   def edit
+    authorize @venture
   end
 
   # POST /ventures or /ventures.json
   def create
+    authorize Venture
     @venture = Venture.new(venture_params)
     associate_people(params[:person][:people_ids])
 
@@ -41,6 +46,7 @@ class VenturesController < ApplicationController
 
   # PATCH/PUT /ventures/1 or /ventures/1.json
   def update
+    authorize @venture
     associate_people(params[:person][:people_ids])
     respond_to do |format|
       if @venture.update(venture_params)
@@ -55,6 +61,7 @@ class VenturesController < ApplicationController
 
   # DELETE /ventures/1 or /ventures/1.json
   def destroy
+    authorize @venture
     @venture.destroy
 
     respond_to do |format|

@@ -3,24 +3,29 @@ class TaxaController < ApplicationController
 
   # GET /taxa or /taxa.json
   def index
+    authorize Taxon
     @taxa = Taxon.all
   end
 
   # GET /taxa/1 or /taxa/1.json
   def show
+    authorize @taxon
   end
 
   # GET /taxa/new
   def new
+    authorize Taxon
     @taxon = Taxon.new
   end
 
   # GET /taxa/1/edit
   def edit
+    authorize @taxon
   end
 
   # POST /taxa or /taxa.json
   def create
+    authorize Taxon
     @taxon = Taxon.new(taxon_params)
 
     respond_to do |format|
@@ -36,6 +41,7 @@ class TaxaController < ApplicationController
 
   # PATCH/PUT /taxa/1 or /taxa/1.json
   def update
+    authorize @taxon
     respond_to do |format|
       if @taxon.update(taxon_params)
         format.html { redirect_to taxon_url(@taxon), notice: "Taxon was successfully updated." }
@@ -49,6 +55,7 @@ class TaxaController < ApplicationController
 
   # DELETE /taxa/1 or /taxa/1.json
   def destroy
+    authorize @taxon
     @taxon.destroy
 
     respond_to do |format|

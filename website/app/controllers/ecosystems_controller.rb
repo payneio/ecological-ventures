@@ -3,24 +3,29 @@ class EcosystemsController < ApplicationController
 
   # GET /ecosystems or /ecosystems.json
   def index
+    authorize Ecosystem
     @ecosystems = Ecosystem.all
   end
 
   # GET /ecosystems/1 or /ecosystems/1.json
   def show
+    authorize @ecosystem
   end
 
   # GET /ecosystems/new
   def new
+    authorize Ecosystem
     @ecosystem = Ecosystem.new
   end
 
   # GET /ecosystems/1/edit
   def edit
+    authorize @ecosystem
   end
 
   # POST /ecosystems or /ecosystems.json
   def create
+    authorize Ecosystem
     @ecosystem = Ecosystem.new(ecosystem_params)
 
     respond_to do |format|
@@ -36,6 +41,7 @@ class EcosystemsController < ApplicationController
 
   # PATCH/PUT /ecosystems/1 or /ecosystems/1.json
   def update
+    authorize @ecosystem
     respond_to do |format|
       if @ecosystem.update(ecosystem_params)
         format.html { redirect_to ecosystem_url(@ecosystem), notice: "Ecosystem was successfully updated." }
@@ -49,6 +55,7 @@ class EcosystemsController < ApplicationController
 
   # DELETE /ecosystems/1 or /ecosystems/1.json
   def destroy
+    authorize @ecosystem
     @ecosystem.destroy
 
     respond_to do |format|
