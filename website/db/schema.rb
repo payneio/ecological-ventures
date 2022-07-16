@@ -14,31 +14,31 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_020610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ecosystems", id: :bigint, default: nil, force: :cascade do |t|
-    t.text "name"
+  create_table "ecosystems", force: :cascade do |t|
+    t.string "name"
     t.text "description"
-    t.text "link"
-    t.text "cover_photo"
-    t.text "created_at", null: false
-    t.text "updated_at", null: false
+    t.string "link"
+    t.string "cover_photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "people", id: :bigint, default: nil, force: :cascade do |t|
-    t.text "name"
-    t.text "phone"
-    t.text "email"
-    t.text "linkedin"
-    t.text "facebook"
-    t.text "website"
-    t.text "address"
-    t.text "country"
-    t.text "portrait"
-    t.text "avatar"
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "linkedin"
+    t.string "facebook"
+    t.string "website"
+    t.string "address"
+    t.string "country"
+    t.string "portrait"
+    t.string "avatar"
     t.text "bio"
     t.text "interests"
     t.boolean "is_public"
-    t.text "created_at", null: false
-    t.text "updated_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "people_ventures", id: false, force: :cascade do |t|
@@ -48,29 +48,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_020610) do
     t.index ["venture_id"], name: "index_people_ventures_on_venture_id"
   end
 
-  create_table "problems", id: :bigint, default: nil, force: :cascade do |t|
-    t.text "name"
+  create_table "problems", force: :cascade do |t|
+    t.string "name"
     t.text "description"
-    t.text "created_at", null: false
-    t.text "updated_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "solutions", id: :bigint, default: nil, force: :cascade do |t|
-    t.text "name"
+  create_table "solutions", force: :cascade do |t|
+    t.string "name"
     t.text "description"
-    t.text "link"
-    t.text "cover_photo"
-    t.text "created_at", null: false
-    t.text "updated_at", null: false
+    t.string "link"
+    t.string "cover_photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "taxa", id: :bigint, default: nil, force: :cascade do |t|
-    t.text "name"
+  create_table "taxa", force: :cascade do |t|
+    t.string "name"
     t.text "description"
-    t.text "link"
-    t.text "cover_photo"
-    t.text "created_at", null: false
-    t.text "updated_at", null: false
+    t.string "link"
+    t.string "cover_photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,21 +99,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_020610) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "ventures", id: :bigint, default: nil, force: :cascade do |t|
-    t.text "name"
+  create_table "ventures", force: :cascade do |t|
+    t.string "name"
     t.text "description"
-    t.text "logo"
-    t.bigint "org_size"
-    t.bigint "year_started"
-    t.text "status"
-    t.text "labels"
-    t.text "created_at", null: false
-    t.text "updated_at", null: false
-    t.text "cover_photo"
-    t.text "summary"
-    t.text "link"
-    t.text "discord"
-    t.text "youtube"
+    t.string "logo"
+    t.integer "org_size"
+    t.integer "year_started"
+    t.string "status"
+    t.string "labels"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "cover_photo"
+    t.string "summary"
+    t.string "link"
+    t.string "discord"
+    t.string "youtube"
   end
 
 end
