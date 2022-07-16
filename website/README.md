@@ -21,7 +21,14 @@ sudo /etc/postgresql/14/main/pg_hba.conf
 # host    all             all              0.0.0.0/0                       scram-sha-256
 # host    all             all              ::/0                            scram-sha-256
 sudo service postgresql restart
-cd webapp
-bin/rails db:setup
-bin/rails db:migrate
+cd website
+rails db:create
+rails db:migrate
+rails db:seed
+```
+
+### Dev run
+
+```
+rails server
 ```
