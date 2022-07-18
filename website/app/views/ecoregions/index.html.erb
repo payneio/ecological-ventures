@@ -1,0 +1,9 @@
+<h1>Ecoregions</h1>
+
+<ul id="ecoregions">
+  <% @ecoregions.each do |ecoregion| %>
+    <li>
+      <%= link_to "#{ecoregion.title} (#{ecoregion.id})", "/ecoregions/#{ecoregion.id}" %>
+    </li>
+  <% end %>
+</ul>

@@ -37,3 +37,4 @@ Solution.create({"name"=>"Conservancy", "description"=>"", "link"=>"", "cover_ph
 Solution.create({"name"=>"Anti-capitalism", "description"=>"", "link"=>"", "cover_photo"=>""})
 Solution.create({"name"=>"Recycling", "description"=>"", "link"=>"", "cover_photo"=>""})
 Solution.create({"name"=>"US$1M eco fund", "description"=>"Apply for grants at ...", "link"=>"", "cover_photo"=>""})
+

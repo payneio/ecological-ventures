@@ -1,19 +1,47 @@
-<h1>Ecosystems</h1>
+<h1>Bioregions</h1>
 
-<div>
-     <iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=47.73655265353599~-122.34237670898438&lvl=11&typ=d&sty=a&src=SHELL&FORM=MBEDV8" scrolling="no">
-     </iframe>
-     <div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
-        <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=47.73655265353599~-122.34237670898438&amp;sty=a&amp;lvl=11&amp;FORM=MBEDLD">View Larger Map</a>
-    </div>
-</div>
+<ul>
+  <li>1 planet.</li>
+  <li><%= Realm.all.length %> realms.</li>
+  <li><%= Subrealm.all.length %> subrealms.</li>
+  <li><%= Bioregion.all.length %> bioregions.</li>
+  <li><%= Ecoregion.all.length %> ecoregions.</li>
+</ul>
 
-<div id="ecosystems">
-  <% @ecosystems.each do |ecosystem| %>
-    <p>
-      <%= link_to ecosystem.name, ecosystem %>
-    </p>
+<ul id="realms">
+  <% Realm.all.each do |realm| %>
+    <li><a href="#<%=realm.id%>"><%= realm.title %></a></li>
   <% end %>
-</div>
+</ul>
 
-<%= link_to "New ecosystem", new_ecosystem_path, class: "btn btn-primary" %>
+<% Realm.all.each do |realm| %>
+  <h2><a name="<%=realm.id%>"/><%= realm.title %></h2>
+  <img src="/<%=realm.id%>.webp" alt="<%= realm.title %>" class="img-fluid"/>
+  <ul>
+    <% realm.subrealms.each do |subrealm| %>
+      <li>
+        <h3><%=subrealm.title%></h3>
+        <ul>
+          <% subrealm.bioregions.each do |bioregion| %>
+            <li>
+              <h4><%=bioregion.title%></h4>
+              <p><%=bioregion.description%></p>
+              <ul>
+                <% bioregion.ecoregions.each do |ecoregion| %>
+                  <li>
+                    <%= link_to "#{ecoregion.title} (#{ecoregion.id})", "/ecoregions/#{ecoregion.id}" %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><em>
+  The copy of all Ecoregion Snapshots are licensed under Creative Commons Attribution-NonCommercial (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY-NC</a>), and can be shared and used for non-commercial purposes.
+  Ecoregion Snapshots: Descriptive Abstracts of the Terrestrial Ecoregions of the World. 2021. Developed by One Earth and RESOLVE. Version 2021 <www.oneearth.org>. Downloaded on July 17, 2022.
+</em></p>

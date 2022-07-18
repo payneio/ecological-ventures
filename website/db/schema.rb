@@ -10,9 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_085704) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_18_062155) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "bioregions", id: :string, force: :cascade do |t|
+    t.string "title"
+    t.string "subrealm_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.index ["subrealm_id"], name: "index_bioregions_on_subrealm_id"
+  end
+
+  create_table "bioregions_ecoregions", force: :cascade do |t|
+    t.string "bioregion_id", null: false
+    t.string "ecoregion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bioregion_id"], name: "index_bioregions_ecoregions_on_bioregion_id"
+    t.index ["ecoregion_id"], name: "index_bioregions_ecoregions_on_ecoregion_id"
+  end
+
+  create_table "ecoregions", id: :string, force: :cascade do |t|
+    t.string "key", null: false
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_ecoregions_on_key"
+  end
 
   create_table "ecosystems", force: :cascade do |t|
     t.string "name"
@@ -55,6 +110,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_085704) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "realms", id: :string, force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "solutions", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -62,6 +123,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_085704) do
     t.string "cover_photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subrealms", id: :string, force: :cascade do |t|
+    t.string "title"
+    t.string "realm_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["realm_id"], name: "index_subrealms_on_realm_id"
   end
 
   create_table "taxa", force: :cascade do |t|
@@ -117,4 +186,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_085704) do
     t.string "youtube"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bioregions", "subrealms"
+  add_foreign_key "bioregions_ecoregions", "bioregions"
+  add_foreign_key "bioregions_ecoregions", "ecoregions"
+  add_foreign_key "subrealms", "realms"
 end

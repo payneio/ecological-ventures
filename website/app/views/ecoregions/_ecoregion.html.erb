@@ -1,0 +1,49 @@
+<div id="<%= dom_id ecoregion %>">
+  
+  <h1>
+    <%= ecoregion.title %>
+  </h1>
+
+  <p>
+    <strong>Ecoregion ID:</strong>
+    <%= ecoregion.id %>
+  </p>
+
+  <p>
+    <strong>Bioregion:</strong>
+    <% ecoregion.bioregions.each do |bioregion| %>
+      <%= bioregion.title %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Realm:</strong>
+    <%= ecoregion.bioregions.first.subrealm.title %>, <%= ecoregion.bioregions.first.subrealm.realm.title %>
+  </p>
+
+  <%
+=begin%>
+ <p>
+    <img src="https://images.takeshape.io/<%= ecoregion.img_url %>" alt="<%= ecoregion.title %>" class="img-fluid"/>
+  </p> 
+<%
+=end%>
+
+  <p>
+    <%= ecoregion.description %>
+  </p>
+
+  <p>
+    Read more at <a href="https://www.oneearth.org/ecoregions/<%= ecoregion.key %>" target="_blank">OneEarth.org</a>.
+  </p>
+
+  <p><em>
+    The copy of all Ecoregion Snapshots are licensed under Creative Commons Attribution-NonCommercial
+    (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY-NC</a>),
+    and can be shared and used for non-commercial purposes.
+    <%= ecoregion.title %>. Ecoregion Snapshots: Descriptive Abstracts of the
+    Terrestrial Ecoregions of the World. 2021. Developed by One Earth and RESOLVE.
+    Version 2021 &lt;<a href="https://www.oneearth.org" target="_blank">www.oneearth.org</a>&gt;.
+    Downloaded on July 17, 2022.
+  </em></p>
+</div>

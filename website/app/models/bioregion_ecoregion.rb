@@ -1,0 +1,2 @@
+class BioregionEcoregion < ApplicationRecord
+end

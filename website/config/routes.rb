@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :taxa, path: "species"
   resources :solutions
   resources :ecosystems
+  resources :ecoregions, :only => [:index, :show]
   resources :people
   resources :problems
   resources :ventures
