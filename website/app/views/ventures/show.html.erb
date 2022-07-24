@@ -1,7 +1,12 @@
 <%= render @venture %>
 
-<div class="btn-group">
-  <%= link_to "Edit", edit_venture_path(@venture), class: "btn btn-primary" %>
-  <%= link_to "Back", :back, class: "btn btn-secondary" %>
-  <%= button_to "Delete", @venture, { method: :delete, class: "btn btn-danger" } %>
-</div>
+<% if policy(@venture).edit? or policy(@venture).destroy? %>
+  <div class="btn-group">
+    <% if policy(@venture).edit? %>
+      <%= link_to "Edit", edit_venture_path(@venture), class: "btn btn-primary" %>
+    <% end %>
+    <% if policy(@venture).destroy? %>
+        <%= button_to "Delete", @venture, { method: :delete, class: "btn btn-danger" } %>
+    <% end %>
+  </div>
+<% end %>

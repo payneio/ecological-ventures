@@ -10,7 +10,7 @@ class AssociationsController < ApplicationController
         @b = params[:b] # people
         b_class = @b.classify.constantize # e.g. Person
 
-        skip_authorization
+        authorize :association, :index?
 
         if params[:query]
             q = params[:query].downcase.strip
@@ -33,7 +33,9 @@ class AssociationsController < ApplicationController
     end
 
     def add_association        
-        skip_authorization # fixme
+        
+        authorize :association, :add?
+
         a = params[:a] # e.g. ventures
         a_id = params[:a_id]
         entity = a.classify.constantize.find(a_id) # e.g. @venture
@@ -54,7 +56,8 @@ class AssociationsController < ApplicationController
     end
 
     def remove_association
-        skip_authorization # fixme
+
+        authorize :association, :remove?
 
         # e.g. @venture.people.delete(@person)
         a = params[:a] # e.g. ventures

@@ -16,40 +16,42 @@
         a_id: entity.id,
     }
 %>
-<span class="dropdown" data-controller="search-focus">
-    <button 
-        type="button"
-        class="btn btn-sm btn-secondary"
-        data-bs-toggle="dropdown"
-        data-action="search-focus#focus">
-        Add
-    </button>
-    <div class="dropdown-menu p-2">
-        <%= form_with(
-            url: associations_path,
-            method: "GET",
-            data: {
-                controller: "form-submission",
-                turbo_frame: "#{b_path}_results",
-            }) do |form| %>
-            <%= hidden_field_tag 'a', a_path %>
-            <%= hidden_field_tag 'a_id', entity.id %>
-            <%= hidden_field_tag 'b', b_path %>
-            <%= form.text_field :query,
-                data: { 
-                    action: "input->form-submission#search",
-                    "search-focus-target" => "query"
-                },
-                autocomplete: "off",
-                placeholder: "search",
-                class: "form-control"
+<% if policy(a_name.constantize).update? %>
+    <span class="dropdown" data-controller="search-focus">
+        <button 
+            type="button"
+            class="btn btn-sm btn-secondary"
+            data-bs-toggle="dropdown"
+            data-action="search-focus#focus">
+            Add
+        </button>
+        <div class="dropdown-menu p-2">
+            <%= form_with(
+                url: associations_path,
+                method: "GET",
+                data: {
+                    controller: "form-submission",
+                    turbo_frame: "#{b_path}_results",
+                }) do |form| %>
+                <%= hidden_field_tag 'a', a_path %>
+                <%= hidden_field_tag 'a_id', entity.id %>
+                <%= hidden_field_tag 'b', b_path %>
+                <%= form.text_field :query,
+                    data: { 
+                        action: "input->form-submission#search",
+                        "search-focus-target" => "query"
+                    },
+                    autocomplete: "off",
+                    placeholder: "search",
+                    class: "form-control"
+                %>
+            <% end %>
+            <%= render "associations/associations", #people/people
+                    a: a_path,
+                    a_id: entity.id,
+                    b: b_path,
+                    results: []
             %>
-        <% end %>
-        <%= render "associations/associations", #people/people
-                a: a_path,
-                a_id: entity.id,
-                b: b_path,
-                results: []
-        %>
-    </div>
-</span>
+        </div>
+    </span>
+<% end %>

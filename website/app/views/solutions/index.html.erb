@@ -8,4 +8,6 @@
   <% end %>
 </div>
 
-<%= link_to "New solution", new_solution_path, class: "btn btn-primary" %>
+<% if policy(Solution).create? %>
+  <%= link_to "New solution", new_solution_path, class: "btn btn-primary" %>
+<% end %>

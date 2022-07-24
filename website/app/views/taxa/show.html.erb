@@ -1,6 +1,13 @@
 <%= render @taxon %>
 
-<div class="btn-group">
-  <%= link_to "Edit", edit_taxon_path(@taxon), class: "btn btn-primary" %>
-  <%= button_to "Destroy this species", @taxon, method: :delete, class: "btn btn-danger" %>
-</div>
+<% if policy(Taxon).edit? %>
+  <div class="btn-group">
+    <%= link_to "Edit", edit_taxon_path(@taxon), class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<% if policy(Taxon).destroy? %>
+  <div class="btn-group">
+    <%= button_to "Destroy this species", @taxon, method: :delete, class: "btn btn-danger" %>
+  </div>
+<% end %>

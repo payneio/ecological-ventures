@@ -8,4 +8,6 @@
   <% end %>
 </div>
 
-<%= link_to "New species", new_taxon_path, class: "btn btn-primary" %>
+<% if policy(Taxon).create? %>
+  <%= link_to "New species", new_taxon_path, class: "btn btn-primary" %>
+<% end %>

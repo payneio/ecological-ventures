@@ -1,12 +1,16 @@
 <%= render @person %>
 
-<div class="btn-group" role="group">
-  <%= link_to "Edit", edit_person_path(@person), class: "btn btn-primary" %>
-  <%= link_to "Back", :back, class: "btn btn-secondary" %>
-</div>
 
-<p>
-  <div class="btn-group">
-    <%= button_to "Delete", @person, { method: :delete, class: "btn btn-danger" } %>
+<% if policy(@person).edit? %>
+  <div class="btn-group" role="group">
+    <%= link_to "Edit", edit_person_path(@person), class: "btn btn-primary" %>
   </div>
-</p>
+<% end %>
+
+<% if policy(@person).destroy? %>
+  <p>
+    <div class="btn-group">
+      <%= button_to "Delete", @person, { method: :delete, class: "btn btn-danger" } %>
+    </div>
+  </p>
+<% end %>

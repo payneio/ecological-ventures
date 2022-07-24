@@ -68,10 +68,8 @@
   </div>
 </div>
 
-Fresh Favorites
-
-How to create a great Ecological Venture page
-
-<div>
-  <%= link_to "New venture", new_venture_path, { class: "btn btn-primary" } %>
-</div>
+<% if policy(Venture).create? %>
+  <div>
+    <%= link_to "New venture", new_venture_path, { class: "btn btn-primary" } %>
+  </div>
+<% end %>

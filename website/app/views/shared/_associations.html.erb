@@ -5,9 +5,11 @@
       <% %w{ventures people ecoregions taxa problems solutions}.each do |rel| %>
 
         <% if entity.respond_to? rel.to_sym %>
-          <li class="list-group-item bg-light">
-            <%= render "shared/association", entity: entity, to: rel %>
-          </li>
+          <% if policy(entity).update? or entity.public_send(rel).length > 0 %>
+            <li class="list-group-item bg-light">
+              <%= render "shared/association", entity: entity, to: rel %>
+            </li>
+          <% end %>
         <% end %>
       
       <% end %>
