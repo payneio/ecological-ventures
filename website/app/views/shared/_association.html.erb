@@ -35,12 +35,14 @@
             <%= hidden_field_tag 'a', a_path %>
             <%= hidden_field_tag 'a_id', entity.id %>
             <%= hidden_field_tag 'b', b_path %>
-            <%= form.text_field :query, 
-                data: { action: "input->form-submission#search" },
+            <%= form.text_field :query,
+                data: { 
+                    action: "input->form-submission#search",
+                    "search-focus-target" => "query"
+                },
                 autocomplete: "off",
                 placeholder: "search",
-                class: "form-control",
-                data: { "search_focus-target" => "query" }
+                class: "form-control"
             %>
         <% end %>
         <%= render "associations/associations", #people/people

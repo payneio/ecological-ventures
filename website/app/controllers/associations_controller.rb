@@ -17,7 +17,13 @@ class AssociationsController < ApplicationController
             if q.empty?
                 results = []       
             else
-                results = b_class.where("name ILIKE ?", "%#{q}%").first(10)
+                if b_class.has_attribute?(:title)
+                    results = b_class.where("title ILIKE ?", "%#{q}%").first(10)
+                elsif b_class.has_attribute?(:name)
+                    results = b_class.where("name ILIKE ?", "%#{q}%").first(10)
+                else
+                    results = b_class.where("id ILIKE ?", "%#{q}%").first(10)
+                end
             end
         else
             results = b_class.all.first(10)

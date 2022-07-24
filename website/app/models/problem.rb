@@ -5,4 +5,8 @@ class Problem < ApplicationRecord
     has_and_belongs_to_many :realms
     has_and_belongs_to_many :ventures
     has_and_belongs_to_many :solutions
+
+    def display_string
+        name
+    end
 end

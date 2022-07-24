@@ -2,7 +2,7 @@
     <% entities.map  do |entity| %>
         <div class="btn-group">
             <%= link_to entity, class: "btn btn-success btn-sm", type: "button", data: {turbo_frame: "_top"} do %>
-                <%= entity.name %>
+                <%= entity.display_string %>
             <% end %>
             <button 
                 type="button"

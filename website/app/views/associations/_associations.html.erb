@@ -7,7 +7,9 @@ b people
 results
 
 <%
-=end%>
+=end
+
+%>
 
 <%= turbo_frame_tag "#{b}_results" do %>
   <ul class="list-group">
@@ -23,7 +25,7 @@ results
                 <%= hidden_field_tag "a_id", a_id %>
                 <%= hidden_field_tag "b", b %>
                 <%= hidden_field_tag "b_ids[]", result.id %>
-                <%= f.submit result.name, class: "btn btn-default" %>
+                <%= f.submit result.display_string, class: "btn btn-default" %>
             <% end %>
         </li>
     <% end %>
