@@ -37,6 +37,8 @@
     Read more at <a href="https://www.oneearth.org/ecoregions/<%= ecoregion.key %>" target="_blank">OneEarth.org</a>.
   </p>
 
+  <%= render partial: "shared/associations", object: ecoregion, as: :entity %>
+
   <p><em>
     The copy of all Ecoregion Snapshots are licensed under Creative Commons Attribution-NonCommercial
     (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY-NC</a>),

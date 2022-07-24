@@ -1,0 +1,31 @@
+<%
+=begin%>
+
+a ventures
+a_id venture_id
+b people
+results
+
+<%
+=end%>
+
+<%= turbo_frame_tag "#{b}_results" do %>
+  <ul class="list-group">
+    <% results.map do |result| %>
+        <li class="list-group-item">
+            <%= form_with(
+                url: add_association_path,
+                method: "PUT",
+                data: {
+                    turbo_frame: "#{b}_badges"
+                }) do |f| %>
+                <%= hidden_field_tag "a", a %>
+                <%= hidden_field_tag "a_id", a_id %>
+                <%= hidden_field_tag "b", b %>
+                <%= hidden_field_tag "b_ids[]", result.id %>
+                <%= f.submit result.name, class: "btn btn-default" %>
+            <% end %>
+        </li>
+    <% end %>
+  </ul>
+<% end %>

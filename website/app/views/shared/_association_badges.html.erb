@@ -1,0 +1,23 @@
+<%= turbo_frame_tag "#{entities_name}_badges" do %>
+    <% entities.map  do |entity| %>
+        <%= link_to entity, data: {turbo_frame: "_top"} do %>
+            <span class="badge bg-primary">
+                <%= entity.name %>
+            </span>
+        <% end %>
+        <span>
+            <%= form_with(
+                url: remove_association_path,
+                method: "DELETE",
+                data: {
+                    turbo_frame: "#{entities_name}_badges"
+                }) do |f| %>
+                <%= hidden_field_tag "a", a %>
+                <%= hidden_field_tag "a_id", a_id %>
+                <%= hidden_field_tag "b", entities_name %>
+                <%= hidden_field_tag "b_ids[]", entity.id %>
+                <%= f.submit "delete", class: "btn btn-default" %>
+            <% end %>
+        </span>
+    <% end %>
+<% end %>

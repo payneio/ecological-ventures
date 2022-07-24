@@ -1,4 +1,5 @@
 class VenturesController < ApplicationController
+
   before_action :set_venture, only: %i[ show edit update destroy ]
 
   # GET /ventures or /ventures.json

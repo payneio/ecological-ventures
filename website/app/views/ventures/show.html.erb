@@ -1,14 +1,5 @@
 <%= render @venture %>
 
-<div>
-  <strong>Associated people:</strong>
-  <div>
-    <% for person in @venture.people do %>
-      <%= link_to person.name, person_path(person) %>
-    <% end %>
-  </div>
-</div>
-
 <div class="btn-group">
   <%= link_to "Edit", edit_venture_path(@venture), class: "btn btn-primary" %>
   <%= link_to "Back", :back, class: "btn btn-secondary" %>

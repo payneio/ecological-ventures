@@ -1,0 +1,23 @@
+<% if entity.respond_to? :ventures %>
+  <%= render "shared/association", entity: entity, to: "ventures" %>
+<% end %>
+
+<% if entity.respond_to? :people %>
+  <%= render "shared/association", entity: entity, to: "people" %>
+<% end %>
+
+<% if entity.respond_to? :ecoregions %>
+  <%= render "shared/association", entity: entity, to: "ecoregions" %>
+<% end %>
+
+<% if entity.respond_to? :taxa %>
+  <%= render "shared/association", entity: entity, to: "taxa" %>
+<% end %>
+
+<% if entity.respond_to? :problems %>
+  <%= render "shared/association", entity: entity, to: "problems" %>
+<% end %>
+
+<% if entity.respond_to? :solutions %>
+  <%= render "shared/association", entity: entity, to: "solutions" %>
+<% end %>

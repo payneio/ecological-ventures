@@ -1,10 +1,20 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: %i[ show edit update destroy ]
+  before_action :set_person, only: %i[ show edit update destroy add_ventures remove_ventures]
 
   # GET /people or /people.json
   def index
     authorize Person
-    @people = Person.all
+
+    if params[:q]
+      q = params[:q].downcase.strip
+      if q.empty?
+        @people = []       
+      else
+        @people = Person.where("name ILIKE ?", "%#{q}%").first(10)
+      end
+    else
+      @people = Person.all
+    end  
   end
 
   # GET /people/1 or /people/1.json
@@ -27,7 +37,7 @@ class PeopleController < ApplicationController
   def create
     authorize Person
     @person = Person.new(person_params)
-    associate_ventures(params[:venture][venture_ids])
+    associate_ventures(params[:venture][:venture_ids])
 
     respond_to do |format|
       if @person.save
@@ -43,7 +53,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1 or /people/1.json
   def update
     authorize @person
-    associate_ventures(params[:venture][venture_ids])
+    associate_ventures(params[:venture][:venture_ids])
 
     respond_to do |format|
       if @person.update(person_params)
@@ -68,15 +78,20 @@ class PeopleController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person
-      @person = Person.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_person
+    @person = Person.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def person_params
-      params.require(:person).permit(:name, :phone, :email, :linkedin, :facebook, :website, :address, :country, :portrait, :avatar, :bio, :interests, :is_public)
-    end
+  # Only allow a list of trusted parameters through.
+  def person_params
+    params.require(:person).permit(:name, :phone, :email, :linkedin, :facebook, :website, :address, :country, :portrait, :avatar, :bio, :interests, :is_public)
+  end
+
+  def get_venture
+    @venture = Venture.find(params[:venture_id])
+  end
+
 end
 
 def associate_ventures(venture_ids)
