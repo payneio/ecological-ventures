@@ -1,23 +1,17 @@
-<% if entity.respond_to? :ventures %>
-  <%= render "shared/association", entity: entity, to: "ventures" %>
-<% end %>
+<div class="card bg-light mb-4">
+    <h5 class="card-header">Associations</h5>
+    <ul class="list-group list-group-flush bg-light">
 
-<% if entity.respond_to? :people %>
-  <%= render "shared/association", entity: entity, to: "people" %>
-<% end %>
+      <% %w{ventures people ecoregions taxa problems solutions}.each do |rel| %>
 
-<% if entity.respond_to? :ecoregions %>
-  <%= render "shared/association", entity: entity, to: "ecoregions" %>
-<% end %>
+        <% if entity.respond_to? rel.to_sym %>
+          <li class="list-group-item bg-light">
+            <%= render "shared/association", entity: entity, to: rel %>
+          </li>
+        <% end %>
+      
+      <% end %>
 
-<% if entity.respond_to? :taxa %>
-  <%= render "shared/association", entity: entity, to: "taxa" %>
-<% end %>
+    </ul>
 
-<% if entity.respond_to? :problems %>
-  <%= render "shared/association", entity: entity, to: "problems" %>
-<% end %>
-
-<% if entity.respond_to? :solutions %>
-  <%= render "shared/association", entity: entity, to: "solutions" %>
-<% end %>
+</div>
