@@ -77,11 +77,6 @@
   </div>
 
   <div>
-    <%= form.label :ventures %>
-    <%= collection_select :venture, :venture_ids, Venture.all, :id, :name, {}, { :multiple => true } %>
-  </div>
-
-  <div>
     <%= form.submit %>
   </div>
 <% end %>

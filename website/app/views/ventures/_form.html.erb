@@ -74,11 +74,6 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :people, class: "form-label" %>
-    <%= collection_select :person, :people_ids, Person.all, :id, :name, {}, { :multiple => true, class: "form-select" } %>
-  </div>
-
-  <div class="mb-3">
     <%= form.submit class: "btn btn-primary" %>
   </div>
 

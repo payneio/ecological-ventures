@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: %i[ show edit update destroy add_ventures remove_ventures]
+  before_action :set_person, only: %i[ show edit update destroy ]
 
   # GET /people or /people.json
   def index
@@ -37,7 +37,6 @@ class PeopleController < ApplicationController
   def create
     authorize Person
     @person = Person.new(person_params)
-    associate_ventures(params[:venture][:venture_ids])
 
     respond_to do |format|
       if @person.save
@@ -92,13 +91,4 @@ class PeopleController < ApplicationController
     @venture = Venture.find(params[:venture_id])
   end
 
-end
-
-def associate_ventures(venture_ids)
-  venture_ids.each do |venture_id|
-    unless venture_id.empty?
-      venture = Venture.find(venture_id)
-      @person.ventures << venture
-    end
-  end
 end
