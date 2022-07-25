@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+Rails.application.routes.default_url_options[:host] = ENV['WEBSITE_HOSTNAME']
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -76,7 +78,6 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = { host: ENV['WEBSITE_HOSTNAME'], port: ENV['PORT'] }
-  Rails.application.routes.default_url_options[:host] = ENV['WEBSITE_HOSTNAME']
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
