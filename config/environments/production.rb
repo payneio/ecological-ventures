@@ -74,7 +74,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: ENV['MAILGUN_API_KEY'],
-    domain: 'ecologicalventures.org',
+    domain: ENV['MAILGUN_DOMAIN']
   }
 
   config.action_mailer.default_url_options = { host: ENV['WEBSITE_HOSTNAME'], port: ENV['PORT'] }
