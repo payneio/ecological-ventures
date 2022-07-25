@@ -48,7 +48,6 @@ class VenturesController < ApplicationController
   # PATCH/PUT /ventures/1 or /ventures/1.json
   def update
     authorize @venture
-    associate_people(params[:person][:people_ids])
     respond_to do |format|
       if @venture.update(venture_params)
         format.html { redirect_to venture_url(@venture), notice: "Venture was successfully updated." }
@@ -81,13 +80,4 @@ class VenturesController < ApplicationController
     def venture_params
       params.require(:venture).permit(:name, :summary, :description, :logo, :cover_photo, :org_size, :year_started, :status, :labels, :link, :discord, :youtube)
     end
-end
-
-def associate_people(people_ids)
-  people_ids.each do |person_id|
-    unless person_id.empty?
-      person = Person.find(person_id)
-      @venture.people << person
-    end
-  end
 end
