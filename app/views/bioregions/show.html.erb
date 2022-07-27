@@ -1,0 +1,10 @@
+<h1><%= @bioregion.title %></h4>
+<p><%=@bioregion.description%></p>
+
+<h2>Bioregions</h2>
+
+<div class="list-group">
+    <% @bioregion.ecoregions.each do |ecoregion| %>
+        <%= link_to "#{ecoregion.title} (#{ecoregion.id})", "/ecoregions/#{ecoregion.id}", class: "list-group-item list-group-item-action" %>
+    <% end %>
+</div>

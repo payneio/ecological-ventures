@@ -1,0 +1,2 @@
+class BioregionPolicy < ApplicationPolicy
+end

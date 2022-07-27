@@ -1,0 +1,10 @@
+<h1><%= @realm.title %></h1>
+
+<img src="/<%=@realm.id%>.webp" alt="<%= @realm.title %>" class="img-fluid mb-4"/>
+
+<h2>Subrealms</h2>
+<div class="list-group">
+    <% @realm.subrealms.each do |subrealm| %>
+        <%=link_to subrealm.title, subrealm, class: "list-group-item list-group-item-action"%>
+    <% end %>
+</div>

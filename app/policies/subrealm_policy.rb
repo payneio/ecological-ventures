@@ -1,0 +1,2 @@
+class SubrealmPolicy < ApplicationPolicy
+end

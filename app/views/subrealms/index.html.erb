@@ -1,0 +1,7 @@
+<h1>Subrealms</h1>
+
+<div class="list-group">
+  <% @subrealms.each do |subrealm| %>
+    <%=link_to subrealm.title, subrealm, class: "list-group-item list-group-item-action" %>
+  <% end %>
+</div>

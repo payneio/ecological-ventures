@@ -13,13 +13,13 @@ class EcoregionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ecoregion
-      @ecoregion = Ecoregion.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def ecoregion_params
-      params.require(:ecoregion).permit(:id, :title)
-    end
+  def set_ecoregion
+    @ecoregion = Ecoregion.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def ecoregion_params
+    params.require(:ecoregion).permit(:id, :title)
+  end
 end

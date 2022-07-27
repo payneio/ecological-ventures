@@ -1,0 +1,11 @@
+<h1><%= @subrealm.title %></h1>
+
+<h2>Bioregions</h2>
+<div class="list-group">
+    <% @subrealm.bioregions.each do |bioregion| %>
+        <%=link_to bioregion, class: "list-group-item list-group-item-action" do%>
+            <h4><%=bioregion.title%></h4>
+            <p><%=bioregion.description%></p>
+        <%end%>
+    <% end %>
+</div>

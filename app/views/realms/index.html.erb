@@ -1,0 +1,24 @@
+<h1>Realms</h1>
+
+<div class="row">
+    <div class="col">
+        <div class="list-group">
+            <% Realm.all.each do |realm| %>
+                <%=link_to realm.title, realm, class: "list-group-item list-group-item-action"%>
+            <% end %>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header">Stats</div>
+            <ul>
+                <li>1 planet.</li>
+                <li><%= Realm.all.length %> realms.</li>
+                <li><%= Subrealm.all.length %> subrealms.</li>
+                <li><%= Bioregion.all.length %> bioregions.</li>
+                <li><%= Ecoregion.all.length %> ecoregions.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
