@@ -32,7 +32,6 @@ class VenturesController < ApplicationController
   def create
     authorize Venture
     @venture = Venture.new(venture_params)
-    associate_people(params[:person][:people_ids])
 
     respond_to do |format|
       if @venture.save
