@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_24_165123) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_035507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -211,6 +211,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_24_165123) do
     t.index ["realm_id", "venture_id"], name: "index_realms_ventures_on_realm_id_and_venture_id", unique: true
     t.index ["realm_id"], name: "index_realms_ventures_on_realm_id"
     t.index ["venture_id"], name: "index_realms_ventures_on_venture_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "role", null: false
+    t.string "roleable_type", null: false
+    t.bigint "roleable_id", null: false
+    t.bigint "set_by", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["roleable_type", "roleable_id", "role"], name: "index_roles_on_roleable_type_and_roleable_id_and_role"
+    t.index ["roleable_type", "roleable_id"], name: "index_roles_on_roleable"
+    t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
   create_table "solutions", force: :cascade do |t|
