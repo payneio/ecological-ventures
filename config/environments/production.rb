@@ -83,7 +83,7 @@ Rails.application.configure do
     password: ENV["GMAIL_PASSWORD"]
   }
   config.action_mailer.default :charset => "utf-8"
-  config.action_mailer.default_url_options = { protocol: 'https', host: ENV['WEBSITE_HOSTNAME'] }
+  config.action_mailer.default_url_options = { host: "https://#{ENV['WEBSITE_HOSTNAME']}" }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
