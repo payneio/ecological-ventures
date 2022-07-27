@@ -78,5 +78,3 @@ end
 gem "devise", "~> 4.8"
 
 gem "pundit", "~> 2.2"
-
-gem 'mailgun-ruby', '~>1.2.5'
