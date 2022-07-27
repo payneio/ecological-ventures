@@ -1,23 +1,5 @@
 <h1>Ventures</h1>
 
-<div class="input-group rounded">
-  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-  <span class="input-group-text border-0" id="search-addon">
-    <i class="bi bi-search"></i>
-  </span>
-</div>
-
-<div class="dropdown">
-  <button type="button" class="btn btn-default dropdown-toggle" id="ventureSelectDropdownButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-    View <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="ventureSelectDropdownButton">
-    <% @ventures.each do |venture| %>
-      <li><%= link_to venture.name, venture, class: "dropdown-item" %></li>
-    <% end %>
-  </ul>
-</div>
-
 <div class="container px-4 py-5">
   <div class="row">
     <div class="col">
@@ -73,3 +55,22 @@
     <%= link_to "New venture", new_venture_path, { class: "btn btn-primary" } %>
   </div>
 <% end %>
+
+<%
+=begin%>
+ <div class="input-group rounded">
+  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+  <span class="input-group-text border-0" id="search-addon">
+    <i class="bi bi-search"></i>
+  </span>
+</div> 
+<%
+=end%>
+
+<h2>All ventures</h2>
+
+<div class="list-group">
+  <% @ventures.each do |venture| %>
+    <%= link_to venture.name, venture, class: "list-group-item list-group-item-action" %>
+  <% end %>
+</div>
