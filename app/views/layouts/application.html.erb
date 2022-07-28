@@ -17,13 +17,11 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main" class="flex-shrink-0">
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+        
+      <%= render partial: "shared/toasts" %>
+
       <%= content_for?(:content) ? yield(:content) : yield %>
+
     </main>
     <footer class="footer mt-auto py-3 bg-light">
       <div class="container">
