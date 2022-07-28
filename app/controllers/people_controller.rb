@@ -52,7 +52,6 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1 or /people/1.json
   def update
     authorize @person
-    associate_ventures(params[:venture][:venture_ids])
 
     respond_to do |format|
       if @person.update(person_params)
