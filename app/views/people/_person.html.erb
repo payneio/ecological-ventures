@@ -2,63 +2,73 @@
 
   <h1><%= person.name %></h1>
 
-  <p>
-    <strong>Phone:</strong>
-    <%= person.phone %>
-  </p>
+  <div class="card">
+    <div class="card-header">
+      Contact
+    </div>
+    <div class="card-body">
+
+      <p>
+        Phone:
+        <%= person.phone %>
+      </p>
+
+      <p>
+        Email:
+        <%= person.email %>
+      </p>
+
+      <p>
+        Address:
+        <%= person.address %>
+      </p>
+
+    </div>
+  </div>
 
   <p>
-    <strong>Email:</strong>
-    <%= person.email %>
-  </p>
-
-  <p>
-    <strong>Linkedin:</strong>
+    Linkedin:
     <%= person.linkedin %>
   </p>
 
   <p>
-    <strong>Facebook:</strong>
+    Facebook:
     <%= person.facebook %>
   </p>
 
   <p>
-    <strong>Website:</strong>
+    Website:
     <%= person.website %>
   </p>
 
-  <p>
-    <strong>Address:</strong>
-    <%= person.address %>
-  </p>
 
   <p>
-    <strong>Country:</strong>
+    Country:
     <%= person.country %>
   </p>
 
   <p>
-    <strong>Portrait:</strong>
+    Portrait:
     <%= person.portrait %>
   </p>
 
   <p>
-    <strong>Avatar:</strong>
+    Avatar:
     <%= person.avatar %>
   </p>
 
   <p>
-    <strong>Bio:</strong>
+    Bio:
     <%= person.bio %>
   </p>
 
   <p>
-    <strong>Interests:</strong>
+    Interests:
     <%= person.interests %>
   </p>
 
   <p>
-    <strong>Is public:</strong>
+    Is public:
     <%= person.is_public %>
   </p>
 

@@ -1,6 +1,5 @@
 <%= render @person %>
 
-
 <% if policy(@person).edit? %>
   <div class="btn-group" role="group">
     <%= link_to "Edit", edit_person_path(@person), class: "btn btn-primary" %>
