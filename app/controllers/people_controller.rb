@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: %i[ show edit update destroy ]
+  before_action :set_person, only: %i[ show edit update destroy claim unclaim ]
 
   # GET /people or /people.json
   def index
@@ -73,6 +73,18 @@ class PeopleController < ApplicationController
       format.html { redirect_to people_url, notice: "Person was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def claim
+    authorize @person
+    @person.claim(current_user)
+    redirect_to person_url(@person)
+  end
+
+  def unclaim
+    authorize @person
+    @person.unclaim
+    redirect_to person_url(@person)
   end
 
   private

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :bioregions, :only => [:index, :show]
   resources :ecoregions, :only => [:index, :show]
   resources :people
+  put "people/:id/claim", to: "people#claim", as: :claim_person
+  put "people/:id/unclaim", to: "people#unclaim", as: :unclaim_person
+
   resources :problems
   resources :ventures
 

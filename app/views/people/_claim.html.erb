@@ -1,0 +1,29 @@
+<% if !entity.claimant and policy(entity).claim? %>
+
+    Is this you?
+
+    <%= form_with(url: claim_person_path, method: :put) do |form| %>
+        <%= form.hidden_field :person_id, value: entity.id %>
+        <%= form.submit "Claim" %>
+    <% end %>
+
+<% end %>
+
+<% if entity.claimant == current_user %>
+    This is your person record.
+<% end %>
+
+<% if entity.claimant and policy(entity).unclaim? %>
+        
+    <%= form_with(url: unclaim_person_path, method: :put) do |form| %>
+        <%= form.hidden_field :person_id, value: entity.id %>
+        <%= form.submit "Revoke claim" %>
+    <% end %>
+
+<% end %>
+
+<% if entity.claimant %>
+    This person record is claimed. If you believe you are the legitimate
+    owner of this person record, please
+    <a href="mailto:support@ecologicalventures.org">contact Support</a>.
+<% end %>
