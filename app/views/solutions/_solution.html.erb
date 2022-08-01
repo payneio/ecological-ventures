@@ -6,7 +6,7 @@
 
   <p>
     <strong>Description:</strong>
-    <%= solution.description %>
+    <%= local_assigns[:revision] ? revision.description : solution.description %>
   </p>
 
   <p>

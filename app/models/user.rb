@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :confirmable, :trackable, :lockable
 
   has_many :roles
+  has_many :revisions, dependent: :destroy
+
   validates :time_zone, presence: true, time_zone: true
 
   def admin?

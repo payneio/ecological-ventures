@@ -15,7 +15,7 @@
   </p>
 
   <div>
-    <%= markdown(venture.description) %>
+    <%= markdown(local_assigns[:revision] ? revision.description : venture.description) %>
   </div>
 
   <% if not venture.logo.blank? %>
@@ -68,7 +68,7 @@
 
   <div>
     <strong>Labels:</strong>
-    <% @labels.each do |label| %>
+    <% @venture.labels.split(';').map{ |x| x.strip }.each do |label| %>
       <span class="badge rounded-pill bg-success"><%= label %></span>
     <% end %>
   </p>

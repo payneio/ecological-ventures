@@ -14,7 +14,6 @@ class VenturesController < ApplicationController
   # GET /ventures/1 or /ventures/1.json
   def show
     authorize @venture
-    @labels = @venture.labels.split(';').map{ |x| x.strip }
   end
 
   # GET /ventures/new
@@ -48,7 +47,7 @@ class VenturesController < ApplicationController
   def update
     authorize @venture
     respond_to do |format|
-      if @venture.update(venture_params)
+      if @venture.update(venture_params.merge(user_id: current_user.id))
         format.html { redirect_to venture_url(@venture), notice: "Venture was successfully updated." }
         format.json { render :show, status: :ok, location: @venture }
       else

@@ -4,6 +4,9 @@ class Person < ApplicationRecord
     has_many :roles, as: :roleable
     has_many :users, through: :roles
 
+    has_many :revisions, as: :revisable
+    include Revisable
+
     validate :has_one_claimant?
     
     def display_string

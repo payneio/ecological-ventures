@@ -6,6 +6,9 @@ class Realm < ApplicationRecord
 
     has_one_attached :hero_image
 
+    has_many :revisions, as: :revisable
+    include Revisable
+
     def display_string
         title
     end

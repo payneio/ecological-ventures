@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_035507) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_01_063439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -137,7 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_035507) do
     t.string "country"
     t.string "portrait"
     t.string "avatar"
-    t.text "bio"
+    t.text "description"
     t.text "interests"
     t.boolean "is_public"
     t.datetime "created_at", null: false
@@ -152,9 +152,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_035507) do
     t.index ["venture_id"], name: "index_people_ventures_on_venture_id"
   end
 
+  create_table "problem_revisions", force: :cascade do |t|
+    t.text "description"
+    t.bigint "problem_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["problem_id"], name: "index_problem_revisions_on_problem_id"
+    t.index ["user_id"], name: "index_problem_revisions_on_user_id"
+  end
+
   create_table "problems", force: :cascade do |t|
     t.string "name"
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -211,6 +220,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_035507) do
     t.index ["realm_id", "venture_id"], name: "index_realms_ventures_on_realm_id_and_venture_id", unique: true
     t.index ["realm_id"], name: "index_realms_ventures_on_realm_id"
     t.index ["venture_id"], name: "index_realms_ventures_on_venture_id"
+  end
+
+  create_table "revisions", force: :cascade do |t|
+    t.string "revisable_type", null: false
+    t.bigint "revisable_id", null: false
+    t.bigint "user_id", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["revisable_type", "revisable_id"], name: "index_revisions_on_revisable"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -348,6 +367,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_035507) do
   add_foreign_key "ecoregions_taxa", "taxa"
   add_foreign_key "ecoregions_ventures", "ecoregions"
   add_foreign_key "ecoregions_ventures", "ventures"
+  add_foreign_key "problem_revisions", "problems"
+  add_foreign_key "problem_revisions", "users"
   add_foreign_key "problems_realms", "problems"
   add_foreign_key "problems_realms", "realms"
   add_foreign_key "problems_solutions", "problems"

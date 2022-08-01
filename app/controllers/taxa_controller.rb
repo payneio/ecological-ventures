@@ -43,7 +43,7 @@ class TaxaController < ApplicationController
   def update
     authorize @taxon
     respond_to do |format|
-      if @taxon.update(taxon_params)
+      if @taxon.update(taxon_params.merge(user_id: current_user.id))
         format.html { redirect_to taxon_url(@taxon), notice: "Taxon was successfully updated." }
         format.json { render :show, status: :ok, location: @taxon }
       else

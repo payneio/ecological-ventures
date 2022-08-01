@@ -44,7 +44,7 @@ class ProblemsController < ApplicationController
   def update
     authorize @problem
     respond_to do |format|
-      if @problem.update(problem_params)
+      if @problem.update(problem_params.merge(user_id: current_user.id))
         format.html { redirect_to problem_url(@problem), notice: "Problem was successfully updated." }
         format.json { render :show, status: :ok, location: @problem }
       else

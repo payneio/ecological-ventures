@@ -43,7 +43,7 @@ class SolutionsController < ApplicationController
   def update
     authorize @solution
     respond_to do |format|
-      if @solution.update(solution_params)
+      if @solution.update(solution_params.merge(user_id: current_user.id))
         format.html { redirect_to solution_url(@solution), notice: "Solution was successfully updated." }
         format.json { render :show, status: :ok, location: @solution }
       else

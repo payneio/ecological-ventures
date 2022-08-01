@@ -1,4 +1,8 @@
-<%= render @solution %>
+<p>
+  <%= link_to "Revisions", polymorphic_path([ @solution, Revision ]) %>
+</p>
+
+<%= render "solutions/solution", solution: @solution, revision: @revision %>
 
 <% if policy(@solution).edit? %>
   <div class="btn-group" role="group">

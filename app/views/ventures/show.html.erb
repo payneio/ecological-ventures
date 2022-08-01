@@ -1,4 +1,8 @@
-<%= render @venture %>
+<p>
+  <%= link_to "Revisions", polymorphic_path([ @venture, Revision ]) %>
+</p>
+
+<%= render "ventures/venture", venture: @venture, revision: @revision %>
 
 <% if policy(@venture).edit? or policy(@venture).destroy? %>
   <div class="btn-group">

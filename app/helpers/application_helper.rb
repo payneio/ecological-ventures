@@ -12,8 +12,8 @@ module ApplicationHelper
 
     def dt_s(date_time)
         current_user ?
-            date_time.strftime("%Y %b %d %-l:%M %p") :
-            date_time.strftime("%Y %b %d %-l:%M %p %Z")
+            date_time.strftime("%Y %b %d %-l:%M:%S %p") :
+            date_time.strftime("%Y %b %d %-l:%M:%S %p %Z")
     end
 
 end

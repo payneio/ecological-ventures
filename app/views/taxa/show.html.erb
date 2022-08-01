@@ -1,4 +1,9 @@
-<%= render @taxon %>
+<p>
+  <%= link_to "Revisions", polymorphic_path([ @taxon, Revision ]) %>
+</p>
+
+<%= render "taxa/taxon", taxon: @taxon, revision: @revision %>
+
 
 <% if policy(Taxon).edit? %>
   <div class="btn-group">

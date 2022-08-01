@@ -54,7 +54,7 @@ class PeopleController < ApplicationController
     authorize @person
 
     respond_to do |format|
-      if @person.update(person_params)
+      if @person.update(person_params.merge(user_id: current_user.id))
         format.html { redirect_to person_url(@person), notice: "Person was successfully updated." }
         format.json { render :show, status: :ok, location: @person }
       else
@@ -95,7 +95,7 @@ class PeopleController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def person_params
-    params.require(:person).permit(:name, :phone, :email, :linkedin, :facebook, :website, :address, :country, :portrait, :avatar, :bio, :interests, :is_public)
+    params.require(:person).permit(:name, :phone, :email, :linkedin, :facebook, :website, :address, :country, :portrait, :avatar, :description, :interests, :is_public)
   end
 
   def get_venture

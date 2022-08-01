@@ -10,6 +10,9 @@ class Bioregion < ApplicationRecord
         attachable.variant :thumb, resize_to_limit: [100, 100]
     end
 
+    has_many :revisions, as: :revisable
+    include Revisable
+
     def display_string
         title
     end

@@ -13,7 +13,7 @@
 
   <p>
     <strong>Description:</strong>
-    <%= taxon.description %>
+    <%= local_assigns[:revision] ? revision.description : taxon.description %>
   </p>
 
   <% if not taxon.link.empty? %>
