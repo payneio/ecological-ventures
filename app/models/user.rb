@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :confirmable, :trackable, :lockable
 
   has_many :roles
+  validates :time_zone, presence: true, time_zone: true
 
   def admin?
     is_admin

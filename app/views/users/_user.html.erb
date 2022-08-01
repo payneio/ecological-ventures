@@ -1,6 +1,15 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Email:</strong>
-    <%= user.email %>
-  </p>
-</div>
+<h1><%= user.username %></h1>
+
+<p><strong>Time zone:</strong> <%= user.time_zone %></p>
+
+<% if policy(user).edit? %>
+  <div id="<%= dom_id user %>" class="card mt-4 mb-4">
+    <div class="card-header">Private settings <i>(visible only to you)</i></div>
+    <div class="card-body">
+      <p>
+        <strong>Email:</strong>
+        <%= user.email %>
+      </p>
+    </div>
+  </div>
+<% end %>
