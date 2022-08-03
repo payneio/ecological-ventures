@@ -10,8 +10,10 @@ namespace :db do
       end
   
       task :all => :environment do
+        usersFilePath = File.join(Rails.root, 'db', 'seeds', 'seed_users.rb')
+        load(usersFilePath)
         Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |filename|
-          load(filename)
+          load(filename) unless filename == usersFilePath
         end
       end
   

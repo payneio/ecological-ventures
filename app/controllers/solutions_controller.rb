@@ -72,6 +72,6 @@ class SolutionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def solution_params
-      params.require(:solution).permit(:name, :description, :link, :cover_photo)
+      params.require(:solution).permit(:name, :description, :link, :cover_photo).merge(reviser_id: current_user.id)
     end
 end

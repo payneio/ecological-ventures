@@ -152,16 +152,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_063439) do
     t.index ["venture_id"], name: "index_people_ventures_on_venture_id"
   end
 
-  create_table "problem_revisions", force: :cascade do |t|
-    t.text "description"
-    t.bigint "problem_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["problem_id"], name: "index_problem_revisions_on_problem_id"
-    t.index ["user_id"], name: "index_problem_revisions_on_user_id"
-  end
-
   create_table "problems", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -367,8 +357,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_063439) do
   add_foreign_key "ecoregions_taxa", "taxa"
   add_foreign_key "ecoregions_ventures", "ecoregions"
   add_foreign_key "ecoregions_ventures", "ventures"
-  add_foreign_key "problem_revisions", "problems"
-  add_foreign_key "problem_revisions", "users"
   add_foreign_key "problems_realms", "problems"
   add_foreign_key "problems_realms", "realms"
   add_foreign_key "problems_solutions", "problems"

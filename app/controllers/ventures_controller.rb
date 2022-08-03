@@ -47,7 +47,7 @@ class VenturesController < ApplicationController
   def update
     authorize @venture
     respond_to do |format|
-      if @venture.update(venture_params.merge(user_id: current_user.id))
+      if @venture.update(venture_params)
         format.html { redirect_to venture_url(@venture), notice: "Venture was successfully updated." }
         format.json { render :show, status: :ok, location: @venture }
       else
@@ -76,6 +76,6 @@ class VenturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def venture_params
-      params.require(:venture).permit(:name, :summary, :description, :logo, :cover_photo, :org_size, :year_started, :status, :labels, :link, :discord, :youtube)
+      params.require(:venture).permit(:name, :summary, :description, :logo, :cover_photo, :org_size, :year_started, :status, :labels, :link, :discord, :youtube).merge(reviser_id: current_user.id)
     end
 end

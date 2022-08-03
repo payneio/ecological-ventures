@@ -27,6 +27,7 @@ class ProblemsController < ApplicationController
   # POST /problems or /problems.json
   def create
     authorize Problem
+
     @problem = Problem.new(problem_params)
 
     respond_to do |format|
@@ -44,7 +45,7 @@ class ProblemsController < ApplicationController
   def update
     authorize @problem
     respond_to do |format|
-      if @problem.update(problem_params.merge(user_id: current_user.id))
+      if @problem.update(problem_params)
         format.html { redirect_to problem_url(@problem), notice: "Problem was successfully updated." }
         format.json { render :show, status: :ok, location: @problem }
       else
@@ -73,6 +74,6 @@ class ProblemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def problem_params
-      params.require(:problem).permit(:name, :description)
+      params.require(:problem).permit(:name, :description).merge(reviser_id: current_user.id)
     end
 end

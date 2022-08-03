@@ -43,7 +43,7 @@ class TaxaController < ApplicationController
   def update
     authorize @taxon
     respond_to do |format|
-      if @taxon.update(taxon_params.merge(user_id: current_user.id))
+      if @taxon.update(taxon_params)
         format.html { redirect_to taxon_url(@taxon), notice: "Taxon was successfully updated." }
         format.json { render :show, status: :ok, location: @taxon }
       else
@@ -72,6 +72,6 @@ class TaxaController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def taxon_params
-      params.require(:taxon).permit(:name, :description, :link, :cover_photo)
+      params.require(:taxon).permit(:name, :description, :link, :cover_photo).merge(reviser_id: current_user.id)
     end
 end

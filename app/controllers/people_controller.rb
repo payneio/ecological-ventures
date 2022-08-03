@@ -95,7 +95,7 @@ class PeopleController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def person_params
-    params.require(:person).permit(:name, :phone, :email, :linkedin, :facebook, :website, :address, :country, :portrait, :avatar, :description, :interests, :is_public)
+    params.require(:person).permit(:name, :phone, :email, :linkedin, :facebook, :website, :address, :country, :portrait, :avatar, :description, :interests, :is_public).merge(reviser_id: current_user.id)
   end
 
   def get_venture
