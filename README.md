@@ -2,11 +2,22 @@
 
 ## Development environment setup
 
-### Development database setup
-
 ```bash
-# install rbenv and ruby 2.7.3
+# install rbenv and ruby 2.7.6
+sudo apt install rbenv
+mkdir -p "$(rbenv root)"/plugins
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+rbenv install 2.7.6
+rbenv local 2.7.6
+sudo apt-get install libpq-dev
+sudo apt-get install libvips
+# or: sudo snap install libvips
+sudo apt-get install ruby-railties # to not have to use bin/rails everywhere
+gem install bundler -v '~> 2.3'
+bin/bundle install
 ```
+
+### Development database setup
 
 ```bash
 sudo apt-get update
@@ -19,20 +30,16 @@ sudo service postgresql restart
 sudo -u postgres psql
 CREATE USER eco PASSWORD 'secret' CREATEDB;
 \q
-sudo /etc/postgresql/14/main/pg_hba.conf
+sudo vim /etc/postgresql/14/main/pg_hba.conf
 
 # Add the following lines (uncommented) to pg_hba.conf:
 # host    all             all              0.0.0.0/0                       scram-sha-256
 # host    all             all              ::/0                            scram-sha-256
 sudo service postgresql restart
-cd website
+
 rails db:create
 rails db:migrate
 rails db:seed:all
-```
-
-```bash
-sudo snap install libvips
 ```
 
 ### Dev run
