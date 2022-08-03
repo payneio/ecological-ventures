@@ -42,6 +42,15 @@ rails db:migrate
 rails db:seed:all
 ```
 
+### Prod deployment setup
+
+```bash
+curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+heroku login
+heroku git:remote -a ecologicalventures
+# Now you can deploy with `git push heroku main`
+```
+
 ### Dev run
 
 ```
