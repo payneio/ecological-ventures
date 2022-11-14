@@ -11,6 +11,7 @@ rbenv install 2.7.6
 rbenv local 2.7.6
 sudo apt-get install libpq-dev
 sudo apt-get install libvips
+sudo apt install nodejs # for rails db:create script to work for some reason?
 # or: sudo snap install libvips
 sudo apt-get install ruby-railties # to not have to use bin/rails everywhere
 gem install bundler -v '~> 2.3'
@@ -24,7 +25,7 @@ sudo apt-get update
 sudo apt install postgresql postgresql-contrib
 # 14.2-1.pgdg20.04+1+b1
 sudo service postgresql start
-sudo -u postgres psql -c 'SHOW config_file'
+sudo -u postgres psql -c 'SHOW config_file;'
 # To allow connecting from Windows, update config file: listen_address = '*'
 sudo service postgresql restart
 sudo -u postgres psql
@@ -37,9 +38,9 @@ sudo vim /etc/postgresql/14/main/pg_hba.conf
 # host    all             all              ::/0                            scram-sha-256
 sudo service postgresql restart
 
-rails db:create
-rails db:migrate
-rails db:seed:all
+bin/rails db:create
+bin/rails db:migrate
+bin/rails db:seed:all
 ```
 
 ### Prod deployment setup
@@ -54,7 +55,7 @@ heroku git:remote -a ecologicalventures
 ### Dev run
 
 ```
-rails server
+bin/rails server
 ```
 
 ### On Ecosystem data
